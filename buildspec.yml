@@ -1,14 +1,19 @@
 version: 0.2
-
 phases:
-  install:
-    commands:
-      - nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2 &
-      - timeout -t 15 sh -c "until docker info; do echo .; sleep 1; done"
   pre_build:
     commands:
-      - docker build -t helloworld .
+      - "echo Logging in to Docker Hub..."
+      #- "systemctl status docker"
+      - "docker --help"
+      - "docker login --username=\"onkar07patil\" --password=\"onkar1@patil\""
   build:
     commands:
-      - docker images
-      - docker run helloworld echo "Hello, World!" 
+      - "echo Build started on `date`"
+      - "echo Building the Docker image..."
+      - "docker build -t onkar07patil/pocwork:latest ."
+      #- "docker tag dvohra/nodeserver:latest dvohra/nodeserver:latest"
+  post_build:
+    commands:
+      - "echo Build completed on `date`"
+      - "echo Pushing the Docker image..."
+      - "docker push onkar07patil/pocwork:latest"
