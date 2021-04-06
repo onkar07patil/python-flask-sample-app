@@ -17,3 +17,5 @@ phases:
       - "echo Build completed on `date`"
       - "echo Pushing the Docker image..."
       - "docker push onkar07patil/pocwork:latest"
+artifacts:
+    files: imagedefinition.json
