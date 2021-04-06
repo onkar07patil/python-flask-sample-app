@@ -1,0 +1,4 @@
+{
+    "name": "sample-deployment",
+    "imageUri": "onkar07patil/pocwork:latest"
+  }
